@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="mainApp" class="org.devcentre.poorexample.MainApplication">
+	
+		<property name="emailServer" value="devcentre.org"/>
+		<property name="emailPort" value="25"/>
+		
+		<property name="databaseServer" value="localhost"/>
+		<property name="databaseUser" value="admin"/>
+		<property name="databasePassword" value="password"/>
+		
+		<property name="webServiceUrl" value="http://devcentre.org/webservice"/>
+		<property name="webServiceService" value="getServices"/><property
+			name="jmsServer">
+	<value>http://devcentre.org/jmsServer</value>
+</property>
+		<property name="jmsPort">
+			<value>8080</value></property>
+		<property name="jmsQueue">
+			<value>poorexample</value></property>
+
+		<property name="alerts">
+			<list>
+				<bean class="org.devcentre.poorexample.Alert">
+					<property name="code" value="EMAIL"/>
+					<property name="message" value="This is the EMAIL Alert - it sends an email"/>	
+					<property name="sendToEmail" value="true"/>
+				</bean>
+				<bean class="org.devcentre.poorexample.Alert">
+					<property name="code" value="DATABASE"/>
+					<property name="message" value="This is the DATABASE Alert - it sends to Database"/>	
+					<property name="sendToDatabase" value="true"/>
+				</bean>
+				<bean class="org.devcentre.poorexample.Alert">
+					<property name="code" value="WEB"/>
+					<property name="message" value="This is the WEB Alert - it sends to Web Service"/>	
+					<property name="sendToWebService" value="true"/>
+				</bean>
+				<bean class="org.devcentre.poorexample.Alert">
+					<property name="code" value="ALL"/>
+					<property name="message" value="This is the ALL Alert - it sends to Everything"/>
+					<property name="sendToEmail" value="true"/>
+					<property name="sendToDatabase" value="true"/>
+					<property name="sendToWebService" value="true"/>
+				</bean>
+			</list>
+		</property>
+		
+		<property name="notifications">
+			<list>
+				<value>EMAIL</value>
+				<value>DATABASE</value>
+				<value>WEB</value>
+				<value>ALL</value>
+			</list>
+		</property>
+			
+	</bean>
+
+</beans>
